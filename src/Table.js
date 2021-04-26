@@ -16,9 +16,8 @@ const cardArray = [
 
 // let rndNum = 0
 // let temp = ""
-let arrayLength = 0
-let rndCarteTemp = "";
-let rndNumTemp = 0;
+
+
 class Table extends React.Component {
   constructor() {
     super();
@@ -29,14 +28,14 @@ class Table extends React.Component {
       playerCardList: [],
       dealerCardList: [],
       startGame: false,
-      premierLance: "yes",
       endGame: false,
       nameOfWinner: ""
     }
   }
 
   rndCarte() {
-    arrayLength = + this.state.playerCardList.length;
+    let rndCarteTemp = "";
+    let rndNumTemp = 0;
 
     rndNumTemp = Math.floor(Math.random() * 53);
 
