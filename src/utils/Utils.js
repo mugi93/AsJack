@@ -33,8 +33,10 @@ export function  rndCarte() {
     return rndCarteTemp
 }
 export function transformCardIntoInt(cardValue) {
-        if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
+        if (cardValue === "K" || cardValue === "Q" || cardValue === "J" ||  cardValue === "0") {
             cardValue = "10"
+        }else if(cardValue==="A"){
+            cardValue="11"
         }
 
         return parseInt(cardValue)
