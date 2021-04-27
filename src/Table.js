@@ -3,7 +3,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './componant/button/Button.jsx'
 import Cartes from "./views/carte/Cartes";
-import Game from './views/Play/Game.jsx'
+import Game from './views/Play/StartGame.jsx'
 import Utils from "./utils/Utils.js"
 
 
@@ -50,6 +50,7 @@ class Table extends React.Component {
   }
 
   onClickStop = () => {
+    // la valeur des 2 premieres cartes 
     const cardSelectedDealer = this.rndCarte()
     const cardSelectedDealer2 = this.rndCarte()
 
@@ -64,7 +65,7 @@ class Table extends React.Component {
       endGame: false,
       nameOfWinner: ""
     }
-
+    // condition pour gagner
     while (dealerValue < 17) {
       const cardSelectedDealer = this.rndCarte()
       const valueCarteDealer = this.transformCardIntoInt(cardSelectedDealer.split("")[0])
@@ -112,6 +113,7 @@ class Table extends React.Component {
   }
 
   onClickGive = () => {
+    // carte du joueur 
     const cardSelected = this.rndCarte()
     const valueCarte = this.transformCardIntoInt(cardSelected.split("")[0])
     const totalPlayerValue = this.state.counterPlayer + valueCarte
@@ -147,14 +149,9 @@ class Table extends React.Component {
       startGame: true
     })
   }
+  renderGame(){
 
-  render() {
-    if (this.state.startGame == false) {
-      return (
-        <Game startGame={this.startGame} />
-      )
-    } else {
-      return (<div>
+    return(<div>
        
 
         <div className="playGame">
@@ -191,8 +188,16 @@ class Table extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </div>)
+  }
+
+  render() {
+    if (this.state.startGame === false) {
+      return (
+        <Game startGame={this.startGame} />
       )
+    } else {
+      return (this.renderGame())
     }
   }
 }
