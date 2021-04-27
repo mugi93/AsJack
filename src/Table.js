@@ -5,16 +5,11 @@ import Button from './componant/button/Button.jsx'
 import Cartes from "./views/carte/Cartes";
 import StartGame from './views/Play/StartGame.jsx'
 import Utils from "./utils/Utils.js"
-import {rndCarte} from "./utils/Utils.js"
-import {transformCardIntoInt} from "./utils/Utils"
+import { rndCarte } from "./utils/Utils.js"
+import { transformCardIntoInt } from "./utils/Utils"
 
 
 
-// const min = 0
-// const cardCount = 52
-
-// let rndNum = 0
-// let temp = ""
 
 
 class Table extends React.Component {
@@ -32,24 +27,7 @@ class Table extends React.Component {
     }
   }
 
-  // rndCarte() {
-  //   const cardArray = [
-  //     "KS", "QS", "JS", "AS", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "0S",
-  //     "KD", "QD", "JD", "AD", "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "0D",
-  //     "KH", "QH", "JH", "AH", "2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "0H",
-  //     "KC", "QC", "JC", "AC", "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "0C"];
-    
-  //   let rndCarteTemp = "";
-  //   let rndNumTemp = 0;
 
-  //   rndNumTemp = Math.floor(Math.random() * 53);
-
-  //   if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
-
-  //   rndCarteTemp = cardArray[rndNumTemp - 1];
-
-  //   return rndCarteTemp
-  // }
 
   onClickStop = () => {
     // la valeur des 2 premieres cartes 
@@ -123,7 +101,7 @@ class Table extends React.Component {
       endGame: false,
       nameOfWinner: ""
     }
-    if (totalPlayerValue>21){
+    if (totalPlayerValue > 21) {
       endGameAndWinner = {
         endGame: true,
         nameOfWinner: "Le player a perdu"
@@ -138,13 +116,7 @@ class Table extends React.Component {
     })
   }
 
-  // transformCardIntoInt(cardValue) {
-  //   if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
-  //     cardValue = "10"
-  //   }
 
-  //   return parseInt(cardValue)
-  // }
 
   startGame = () => {
     const cardSelected = rndCarte()
@@ -164,59 +136,62 @@ class Table extends React.Component {
     })
   }
 
-  renderMsg(){
-    if(this.state.nameOfWinner=== "Le player a perdu"){
+  renderMsg() {
+    if (this.state.nameOfWinner === "Le player a perdu") {
       return (<h1>{this.state.nameOfWinner}</h1>)
-    }else{
-      return(<h1>Winner is {this.state.nameOfWinner}</h1>)
+    } else {
+      return (<h1>Winner is {this.state.nameOfWinner}</h1>)
     }
   }
-  renderGame(){
+  
 
-    return(<div>
-       
+  renderGame() {
 
-        <div className="playGame">
-          <div style={{ height: '100vh', position: 'relative' }}>
-            <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1> 
-          
-            <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
-            {this.state.endGame && (<div className='winlost'>
-              {this.renderMsg()}
-            </div>)}
-             
-             
-            
-            
-            <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
-            
-             <div className="d-grid gap-2">
-                
-                <Button
-                  onClick={this.onClickGive}
-                  classe="btn btn-outline-warning btn-lg rounded-pill"
-                  color="white"
-                  bcolor="#0d6efd"
-                  name="Give"
-                />
-              </div>
-              <div className="d-grid gap-2">
-                <Cartes key={"player"} cardList={this.state.playerCardList} /> 
-              </div>
-              <div className="d-grid gap-2">
-                <Button
-                  onClick={this.onClickStop}
-                  classe="btn btn-outline-warning btn-lg rounded-pill"
-                  color="white"
-                  bcolor="#dc3545"
-                  name="Stop"
-                />
-              </div>
+    return (<div>
 
+
+      <div className="playGame">
+        <div style={{ height: '100vh', position: 'relative' }}>
+          <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+
+          <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
+          {this.state.endGame && (<div className='winlost'>
+            {this.renderMsg()}
+          </div>)}
+
+
+
+
+          <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
+
+            <div className="d-grid gap-2">
+
+              <Button
+                onClick={this.onClickGive}
+                classe="btn btn-outline-warning btn-lg rounded-pill"
+                color="white"
+                bcolor="#0d6efd"
+                name="Give"
+                display={this.state.endGame === true ? "none" : "block"}
+              />
             </div>
+            <div className="d-grid gap-2">
+              <Cartes key={"player"} cardList={this.state.playerCardList} />
+            </div>
+            <div className="d-grid gap-2">
+              <Button
+                onClick={this.onClickStop}
+                classe="btn btn-outline-warning btn-lg rounded-pill"
+                color="white"
+                bcolor="#dc3545"
+                name="Stop"
+                display={this.state.endGame === true ? "none" : "block"} />
+            </div>
+
           </div>
         </div>
-      </div>)
+      </div>
+    </div>)
   }
 
   render() {
