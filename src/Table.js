@@ -100,7 +100,8 @@ class Table extends React.Component {
     let endGameAndWinner = {
       endGame: false,
       nameOfWinner: ""
-    }
+     }
+     console.log(totalPlayerValue)
     if (totalPlayerValue > 21) {
       endGameAndWinner = {
         endGame: true,
