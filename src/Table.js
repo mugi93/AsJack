@@ -3,7 +3,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './componant/button/Button.jsx'
 import Cartes from "./views/carte/Cartes";
-import Game from './views/Play/StartGame.jsx'
+import StartGame from './views/Play/StartGame.jsx'
 import Utils from "./utils/Utils.js"
 import {rndCarte} from "./utils/Utils.js"
 import {transformCardIntoInt} from "./utils/Utils"
@@ -158,15 +158,20 @@ class Table extends React.Component {
 
         <div className="playGame">
           <div style={{ height: '100vh', position: 'relative' }}>
-            <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+            <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1> 
+          
             <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
             {this.state.endGame && (<div className='winlost'>
               <h1>Winner is {this.state.nameOfWinner}</h1>
             </div>)}
-            <Cartes key={"player"} cardList={this.state.playerCardList} />
-
+             
+             
+            
+            
             <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
-              <div className="d-grid gap-2">
+            
+             <div className="d-grid gap-2">
+                
                 <Button
                   onClick={this.onClickGive}
                   classe="btn btn-outline-warning btn-lg rounded-pill"
@@ -175,7 +180,8 @@ class Table extends React.Component {
                   name="Give"
                 />
               </div>
-              <div>
+              <div className="d-grid gap-2">
+                <Cartes key={"player"} cardList={this.state.playerCardList} /> 
               </div>
               <div className="d-grid gap-2">
                 <Button
@@ -196,7 +202,7 @@ class Table extends React.Component {
   render() {
     if (this.state.startGame === false) {
       return (
-        <Game startGame={this.startGame} />
+        <StartGame startGame={this.startGame} />
       )
     } else {
       return (this.renderGame())
