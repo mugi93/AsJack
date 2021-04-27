@@ -119,8 +119,20 @@ class Table extends React.Component {
     const cardSelected = rndCarte()
     const valueCarte = transformCardIntoInt(cardSelected.split("")[0])
     const totalPlayerValue = this.state.counterPlayer + valueCarte
+    let endGameAndWinner = {
+      endGame: false,
+      nameOfWinner: ""
+    }
+    if (totalPlayerValue>21){
+      endGameAndWinner = {
+        endGame: true,
+        nameOfWinner: "Le player a perdu"
+      }
+    }
 
     this.setState({
+      nameOfWinner: endGameAndWinner.nameOfWinner,
+      endGame: endGameAndWinner.endGame,
       counterPlayer: totalPlayerValue,
       playerCardList: [...this.state.playerCardList, cardSelected]
     })
@@ -151,6 +163,14 @@ class Table extends React.Component {
       startGame: true
     })
   }
+
+  renderMsg(){
+    if(this.state.nameOfWinner=== "Le player a perdu"){
+      return (<h1>{this.state.nameOfWinner}</h1>)
+    }else{
+      return(<h1>Winner is {this.state.nameOfWinner}</h1>)
+    }
+  }
   renderGame(){
 
     return(<div>
@@ -162,7 +182,7 @@ class Table extends React.Component {
           
             <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
             {this.state.endGame && (<div className='winlost'>
-              <h1>Winner is {this.state.nameOfWinner}</h1>
+              {this.renderMsg()}
             </div>)}
              
              
