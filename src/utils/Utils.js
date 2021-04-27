@@ -1,19 +1,7 @@
-import React from "react";
-
-class Utils extends React.Component {
 
 
-   
-   
-
-    render() {
-        return
 
 
-    }
-}
-
-export default Utils;
 export function  rndCarte() {
     let rndCarteTemp = "";
     let rndNumTemp = 0;

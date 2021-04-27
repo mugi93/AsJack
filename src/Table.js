@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './componant/button/Button.jsx'
 import Cartes from "./views/carte/Cartes";
 import StartGame from './views/Play/StartGame.jsx'
-import Utils from "./utils/Utils.js"
 import { rndCarte } from "./utils/Utils.js"
 import { transformCardIntoInt } from "./utils/Utils"
 
@@ -94,6 +93,7 @@ class Table extends React.Component {
 
   onClickGive = () => {
     // carte du joueur 
+    
     const cardSelected = rndCarte()
     const valueCarte = transformCardIntoInt(cardSelected.split("")[0])
     const totalPlayerValue = this.state.counterPlayer + valueCarte
@@ -101,12 +101,19 @@ class Table extends React.Component {
       endGame: false,
       nameOfWinner: ""
      }
+     if (this.state.counterPlayer=21){
+      endGameAndWinner = {
+        endGame: true,
+        nameOfWinner: "player 1 black jack"
+      }
+     }
      console.log(totalPlayerValue)
     if (totalPlayerValue > 21) {
       endGameAndWinner = {
         endGame: true,
         nameOfWinner: "Le player a perdu"
       }
+    
     }
 
     this.setState({
@@ -129,12 +136,17 @@ class Table extends React.Component {
     const firstPlayerValue = valueCarte + valueCarte2
 
     const firstTwoCardsPlayer = [cardSelected, cardSelected2]
+    
+   
 
     this.setState({
       counterPlayer: firstPlayerValue,
       playerCardList: firstTwoCardsPlayer,
-      startGame: true
+      startGame: true,
+      
     })
+    
+    
   }
 
   renderMsg() {
